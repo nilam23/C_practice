@@ -35,5 +35,6 @@ int main(){
 		printf("There exists a pair of numbers that sum to the number %d.\n", k);
 	else
 		printf("There exists no such pairs.\n");
+	free(arr);
 	return 0;
 }
