@@ -1,6 +1,6 @@
 #include<stdio.h>
+#include<string.h>
 #include<stdlib.h>
-#include "myHeader.h"
   
 void selectionSort(int *arr, int n)  
 {  
@@ -19,7 +19,6 @@ void selectionSort(int *arr, int n)
 int main(){
 	int testcases;
 	while(1){
-		// int testcases;
 		scanf("%d", &testcases);
 		if(testcases < 1 || testcases > 10000){
 			continue;
@@ -27,24 +26,15 @@ int main(){
 		else
 			break;
 	}
-	int coaches;
+	char strCoaches[1000000];
 	while(testcases--){
-		scanf("%d", &coaches);
-		if(coaches < 1 || coaches > 1000000){
-			testcases+=1;
-			continue;
-		}
-		int i=0, rem;
+		scanf("%s", strCoaches);
+		int i=0;
+		int len=strlen(strCoaches);
 		int arr[10];
-		while(1){
-			arr[i++] = coaches % 10;
-			coaches = coaches/10;
-			if(coaches == 0)
-				break;
-		} //fails when input starts with 0
-		print(arr, i);
+		for(i=0; i<len; i++)
+			arr[i]=strCoaches[i]-'0';
 		selectionSort(arr, i);
-		print(arr, i);
 		int flag=0;
 		for(int j=0; j<i-1; j++){
 			if(arr[j]-arr[j+1] != -1)
