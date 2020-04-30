@@ -1,4 +1,6 @@
 #include<stdio.h>
+#define getMin(a, b) (a < b ? a : b)
+#define getMax(a, b) (a > b ? a : b)
 
 int main(){
 	int testCases;
@@ -11,20 +13,13 @@ int main(){
 			i++;
 
 		int time=0;
+		int min=1e9;
 		i=0;
-		while(i>=0){
-			if(arr[i]<K && i<SIZE){
-				for(int j=0; j<SIZE; j++){
-					arr[j]+=1;
-				}
-				time++;
-				continue;
-			}
-			if(i!=SIZE)
-				i++;
-			else
-				break;
+		while(i<SIZE){
+			min=getMin(min,arr[i]);
+			i++;
 		}
+		time=getMax(0, K-min);
 		printf("%d\n", time);
 	}
 	return 0;
