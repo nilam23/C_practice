@@ -154,6 +154,59 @@ struct node *InsertAtPosition(struct node *head, int item, int pos){
 	return head;
 }
 
+struct node *DeleteFromBeginning(struct node *head){
+	if(head==NULL){
+		printf("List is empty.\n");
+		return head;
+	}
+	struct node *t=head;
+	head=t->link;
+	free(t);
+	return head;
+}
+
+struct node *DeleteFromEnd(struct node *head){
+	if(head==NULL){
+		printf("List is empty.\n");
+		return head;
+	}
+	if(head->link==NULL){
+		free(head);
+		head=NULL;
+		return head;
+	}
+	struct node *t=head;
+	while(t->link->link!=NULL)
+		t=t->link;
+	free(t->link);
+	t->link=NULL;
+	return head;
+}
+
+struct node *DeleteAtPosition(struct node *head, int pos){
+	if(pos==1){
+		head=DeleteFromBeginning(head);
+		return head;
+	}
+	int count=CountNodes(head);
+	if(pos==count){
+		head=DeleteFromEnd(head);
+		return head;
+	}
+	struct node *t=head;
+	for(int i=1; i<pos-1; i++)
+		t=t->link;
+	if(t->link==NULL){
+		printf("There are fewer nodes than %d\n", pos);
+		return head;
+	}
+	struct node *t1;
+	t1=t->link;
+	t->link=t->link->link;
+	free(t1);
+	return head;
+}
+
 int main(){
 	struct node *head=NULL;
 	while(1){
@@ -167,7 +220,10 @@ int main(){
 		printf("7. Add after a node.\n");
 		printf("8. Add before a node.\n");
 		printf("9. Add at a given position.\n");
-		printf("10. Quit.\n");
+		printf("10. Delete from the beginning.\n");
+		printf("11. Delete from the end.\n");
+		printf("12. Delete at position.\n");
+		printf("13. Quit.\n");
 		int choice, count, item, data, pos;
 		printf("\nEnter your choice: ");
 		scanf("%d", &choice);
@@ -219,6 +275,17 @@ int main(){
 				head=InsertAtPosition(head, data, pos);
 				break;
 			case 10:
+				head=DeleteFromBeginning(head);
+				break;
+			case 11:
+				head=DeleteFromEnd(head);
+				break;
+			case 12:
+				printf("Enter the position of the node to be deleted: ");
+				scanf("%d", &pos);
+				head=DeleteAtPosition(head, pos);
+				break;
+			case 13:
 				printf("--Exiting--\n");
 				exit(0);
 			default:
