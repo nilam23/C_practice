@@ -213,12 +213,12 @@ struct node *DeleteAtPosition(struct node *head, int pos){
 		return head;
 	}
 	struct node *t=head;
-	for(int i=1; i<pos; i++){
+	for(int i=1; i<pos-1; i++){
 		if(t==NULL)
 			continue;
 		t=t->link;
 	}
-	if(t==NULL){
+	if(!t || !t->link){
 		printf("There are fewer nodes than %d\n", pos);
 		return head;
 	}
