@@ -134,6 +134,10 @@ struct node *InsertBeforeNode(struct node *head, int item, int data){
 }
 
 struct node *InsertAtPosition(struct node *head, int item, int pos){
+	if(pos==0){
+		printf("0 is not a valid position.\n");
+		return head;
+	}
 	if(pos==1){
 		head=InsertAtBeginning(head, item);
 		return head;
@@ -144,8 +148,11 @@ struct node *InsertAtPosition(struct node *head, int item, int pos){
 		return head;
 	}
 	struct node *t=head;
-	for(int i=1; i<pos-1; i++)
+	for(int i=1; i<pos-1; i++){
+		if(t==NULL)
+			continue;
 		t=t->link;
+	}
 	if(t==NULL){
 		printf("There are fewer nodes than %d.\n", pos-1);
 		return head;
