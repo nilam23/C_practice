@@ -16,6 +16,10 @@ struct node *InsertAtBeginning(struct node *head, int item){
 }
 
 struct node *InsertAtEnd(struct node *head, int item){
+	if(head==NULL){
+		head=InsertAtBeginning(head, item);
+		return head;
+	}
 	struct node *new, *t;
 	new=(struct node *)malloc(sizeof(struct node));
 	new->data=item;
@@ -177,12 +181,12 @@ struct node *DeleteFromEnd(struct node *head){
 		printf("List is empty.\n");
 		return head;
 	}
+	struct node *t=head;
 	if(head->link==NULL){
-		free(head);
 		head=NULL;
+		free(t);
 		return head;
 	}
-	struct node *t=head;
 	while(t->link->link!=NULL)
 		t=t->link;
 	free(t->link);
@@ -191,6 +195,14 @@ struct node *DeleteFromEnd(struct node *head){
 }
 
 struct node *DeleteAtPosition(struct node *head, int pos){
+	if(head==NULL){
+		printf("List is empty.\n");
+		return head;
+	}
+	if(pos==0){
+		printf("0 is not a valid position.\n");
+		return head;
+	}
 	if(pos==1){
 		head=DeleteFromBeginning(head);
 		return head;
@@ -201,9 +213,12 @@ struct node *DeleteAtPosition(struct node *head, int pos){
 		return head;
 	}
 	struct node *t=head;
-	for(int i=1; i<pos-1; i++)
+	for(int i=1; i<pos; i++){
+		if(t==NULL)
+			continue;
 		t=t->link;
-	if(t->link==NULL){
+	}
+	if(t==NULL){
 		printf("There are fewer nodes than %d\n", pos);
 		return head;
 	}
@@ -218,7 +233,7 @@ int main(){
 	struct node *head=NULL;
 	while(1){
 		printf("\n--Pick your choice--\n");
-		printf("1. Create a list.\n");
+		printf("1. Create a new list.\n");
 		printf("2. Display the list.\n");
 		printf("3. Count the no of nodes.\n");
 		printf("4. Search an item.\n");
