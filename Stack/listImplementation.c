@@ -75,10 +75,11 @@ int main(){
 					printf("Popped item is: %d\n", item);
 				break;
 			case 3:
-				if(peek()==-1)
+				item = peek();
+				if(item==-1)
 					break;
 				else
-					printf("Item at the top is: %d\n", peek());
+					printf("Item at the top is: %d\n", item);
 				break;
 			case 4:
 				display();
