@@ -72,10 +72,12 @@ Node *InsertAtPosition(Node *last, int position, int item){
 	}
 	else if(position == 1){
 		last = InsertAtBeginning(last, item);
+		printf("Inserted successfully.\n");
 		return last;
 	}
 	else if(position == count+1){
 		last = InsertAtEnd(last, item);
+		printf("Inserted successfully.\n");
 		return last;
 	}
 	else if(position > count+1){
