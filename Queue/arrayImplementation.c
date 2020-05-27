@@ -8,7 +8,7 @@ int rear = -1;
 
 void insert(int item){
 	if(rear == MAX-1){
-		printf("Queue overflow.\n");
+		printf("Queue is full.\n");
 		return;
 	}
 	if(front == -1)
@@ -19,7 +19,7 @@ void insert(int item){
 
 int delete(){
 	if(front == -1 || front == rear+1){
-		printf("Queue underflow.\n");
+		printf("Queue is empty.\n");
 		return 0;
 	}
 	int temp = queue[front++];
@@ -28,7 +28,7 @@ int delete(){
 
 int peek(){
 	if(front == -1 || front == rear+1){
-		printf("Queue underflow.\n");
+		printf("Queue is empty.\n");
 		return 0;
 	}
 	return queue[front];
@@ -36,7 +36,7 @@ int peek(){
 
 void display(){
 	if(front == -1 || front == rear+1){
-		printf("Queue underflow.\n");
+		printf("Queue is empty.\n");
 		return;
 	}
 	printf("The queue elements are: ");
