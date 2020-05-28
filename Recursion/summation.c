@@ -5,14 +5,16 @@ summation of the numbers from 1 to n */
 int sum(int n){
 	if(n == 0)
 		return 0;
-	else
-		return n + sum(n-1);
+	int res = (n + sum(n-1));
+	printf("%d + ", n);
+	return res;
 }
 int main(){
 	int n;
-	printf("Enter the upper bound: ");
+	printf("Enter the no of terms: ");
 	scanf("%d", &n);
+	printf("Summation is:\n");
 	int res = sum(n);
-	printf("Total sum= %d\n", res);
+	printf("\b\b= %d\n", res);
 	return 0;
 }
