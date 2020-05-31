@@ -3,7 +3,7 @@
 #define isLess(a, b) (a < b ? 1 : 0)
 using namespace std;
 void insertionSort(int *arr, int size){
-	for(int i = 0; i < size; i++){
+	for(int i = 1; i < size; i++){
 		for(int j = i; j > 0; j-- ){
 			if(isLess(arr[j], arr[j-1])){
 				arr[j] = arr[j] + arr[j-1];
