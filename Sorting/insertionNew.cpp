@@ -1,6 +1,5 @@
 #include<iostream>
 #define MAX 100
-#define isLess(a, b) (a < b ? 1 : 0)
 using namespace std;
 void insertionSort(int *arr, int size){
 	for(int i = 1; i < size; i++){
