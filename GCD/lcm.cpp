@@ -1,10 +1,15 @@
 #include<iostream>
 using namespace std;
 int getGcd(int a, int b){
-	if(a == 0)
-		return b;
+	if(a < b){
+		a = a + b;
+		b = a - b;
+		a = a - b;
+	}
+	if(b == 0)
+		return a;
 	else
-		return getGcd(b % a, a);
+		return getGcd(a % b, b);
 }
 int getLcm(int a, int b){
 	return (a * b)/getGcd(a, b);
