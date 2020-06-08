@@ -4,11 +4,11 @@ using namespace std;
 ll power(int a, int n){
 	if(n == 0)
 		return 1;
-	ll result = power(a, n/2) * power(a, n/2);
+	ll result = power(a, n/2);
 	if(n & 1)
-		return result * a;
+		return result * result * a;
 	else
-		return result;
+		return result * result;
 }
 int main(){
 	int a, n;
