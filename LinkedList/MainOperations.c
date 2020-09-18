@@ -89,26 +89,6 @@ void SearchItem(struct node *head, int item){
 	return;
 }
 
-void SwapPairs(struct node *head){
-	if(!head || !head->link){
-		printf("There has to be at least 2 nodes in the list.\n");
-		return;
-	}
-	int temp;
-	struct node *p, *q;
-	p = head;
-	q = head->link;
-	while(q){
-		temp = p->data;
-		p->data = q->data;
-		q->data = temp;
-		p = q->link;
-		q = p ? p->link : 0;
-	}
-	printf("Nodes have been rearranged.\n");
-	return;
-}
-
 struct node *InsertAfterNode(struct node *head, int item, int data){
 	if(head==NULL){
 		printf("List is empty.\n");
@@ -193,6 +173,7 @@ struct node *DeleteFromBeginning(struct node *head){
 	struct node *t=head;
 	head=t->link;
 	free(t);
+	printf("Deleted.\n");
 	return head;
 }
 
@@ -211,6 +192,7 @@ struct node *DeleteFromEnd(struct node *head){
 		t=t->link;
 	free(t->link);
 	t->link=NULL;
+	printf("Deleted.\n");
 	return head;
 }
 
@@ -246,6 +228,7 @@ struct node *DeleteAtPosition(struct node *head, int pos){
 	t1=t->link;
 	t->link=t->link->link;
 	free(t1);
+	printf("Deleted.\n");
 	return head;
 }
 
@@ -257,16 +240,15 @@ int main(){
 		printf("2. Display the list.\n");
 		printf("3. Count the no of nodes.\n");
 		printf("4. Search an item.\n");
-		printf("5. Swap pairs of data values.\n");
-		printf("6. Add at the beginning.\n");
-		printf("7. Add at the end.\n");
-		printf("8. Add after a node.\n");
-		printf("9. Add before a node.\n");
-		printf("10. Add at a given position.\n");
-		printf("11. Delete from the beginning.\n");
-		printf("12. Delete from the end.\n");
-		printf("13. Delete at position.\n");
-		printf("14. Quit.\n");
+		printf("5. Add at the beginning.\n");
+		printf("6. Add at the end.\n");
+		printf("7. Add after a node.\n");
+		printf("8. Add before a node.\n");
+		printf("9. Add at a given position.\n");
+		printf("10. Delete from the beginning.\n");
+		printf("11. Delete from the end.\n");
+		printf("12. Delete at position.\n");
+		printf("13. Quit.\n");
 		int choice, count, item, data, pos;
 		printf("\nEnter your choice: ");
 		scanf("%d", &choice);
@@ -287,51 +269,48 @@ int main(){
 				SearchItem(head, item);
 				break;
 			case 5:
-				SwapPairs(head);
-				break;
-			case 6:
 				printf("Enter the element to be inserted: ");
 				scanf("%d", &data);
 				head=InsertAtBeginning(head, data);
 				break;
-			case 7:
+			case 6:
 				printf("Enter the element to be inserted: ");
 				scanf("%d", &data);
 				head=InsertAtEnd(head, data);
 				break;
-			case 8:
+			case 7:
 				printf("Enter the element to be inserted: ");
 				scanf("%d", &data);
 				printf("Enter the data of the target node: ");
 				scanf("%d", &item);
 				head=InsertAfterNode(head, data, item);
 				break;
-			case 9:
+			case 8:
 				printf("Enter the element to be inserted: ");
 				scanf("%d", &data);
 				printf("Enter the data of the target node: ");
 				scanf("%d", &item);
 				head=InsertBeforeNode(head, data, item);
 				break;
-			case 10:
-				printf("Enter the element to be inserted: ");
-				scanf("%d", &data);
+			case 9:
 				printf("Enter the position of insertion: ");
 				scanf("%d", &pos);
+				printf("Enter the element to be inserted: ");
+				scanf("%d", &data);
 				head=InsertAtPosition(head, data, pos);
 				break;
-			case 11:
+			case 10:
 				head=DeleteFromBeginning(head);
 				break;
-			case 12:
+			case 11:
 				head=DeleteFromEnd(head);
 				break;
-			case 13:
+			case 12:
 				printf("Enter the position of the node to be deleted: ");
 				scanf("%d", &pos);
 				head=DeleteAtPosition(head, pos);
 				break;
-			case 14:
+			case 13:
 				printf("--Exiting--\n");
 				exit(0);
 			default:
