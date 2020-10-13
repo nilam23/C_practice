@@ -187,6 +187,25 @@ Node *DeleteFromPosition(Node *last, int position){
 	return last;
 }
 
+Node *Reverse(Node *last){
+	if(last == NULL){
+		printf("The list is empty.\n");
+		return NULL;
+	}
+	Node *prev, *next, *curr;
+	curr = last->link;
+	prev = NULL;
+	do{
+		next = curr->link;
+		curr->link = prev;
+		prev = curr;
+		curr = next;
+	}while(curr->link);
+	curr->link = prev;
+	last = curr;
+	return last;
+}
+
 int main(){
 	Node *last = NULL;
 	int choice, item, position, count;
@@ -201,7 +220,8 @@ int main(){
 		printf("7. Delete from position.\n");
 		printf("8. Display.\n");
 		printf("9. Count.\n");
-		printf("10. Quit.\n");
+		printf("10. Reverse.\n");
+		printf("11. Quit.\n");
 		printf("Your choice? ");
 		scanf("%d", &choice);
 		printf("\n");
@@ -251,6 +271,9 @@ int main(){
 					printf("No of nodes in the list: %d\n", count);
 				break;
 			case 10:
+				last = Reverse(last);
+				break;
+			case 11:
 				printf("\n--EXITING--\n");
 				exit(0);
 			default:
