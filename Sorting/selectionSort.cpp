@@ -2,14 +2,29 @@
 #define SIZE 100
 using namespace std;
 
+// void selectionSort(int arr[], int size){
+// 	for(int i = 0; i < size-1; i++){
+// 		for(int j = i+1; j < size; j++){
+// 			if(arr[j] < arr[i]){
+// 				arr[i] = arr[i] + arr[j];
+// 				arr[j] = arr[i] - arr[j];
+// 				arr[i] = arr[i] - arr[j];
+// 			}
+// 		}
+// 	}
+// }
+
 void selectionSort(int arr[], int size){
 	for(int i = 0; i < size-1; i++){
+		int min = i;
 		for(int j = i+1; j < size; j++){
-			if(arr[j] < arr[i]){
-				arr[i] = arr[i] + arr[j];
-				arr[j] = arr[i] - arr[j];
-				arr[i] = arr[i] - arr[j];
-			}
+			if(arr[min]>arr[j])
+				min = j;
+		}
+		if(min!=i){
+			arr[min] = arr[min] + arr[i];
+			arr[i] = arr[min] - arr[i];
+			arr[min] = arr[min] - arr[i];
 		}
 	}
 }
